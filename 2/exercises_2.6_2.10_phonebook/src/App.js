@@ -5,13 +5,16 @@ import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import personService from './services/personService'
+import './index.css'
+import Notification from './components/Notification'
 
 const App = () => {
-  const [persons, setPersons] = useState([])
 
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
+  const [notification, setNotification] = useState(null)
 
 
   useEffect(() => {
@@ -62,12 +65,21 @@ const App = () => {
           setPersons(persons.concat(response.data))
           setNewName('')
           setNewNumber('')
+          showNotification(`Added ${newName}`)
         })
         .catch(error => {
           console.log('error', error);
         })
     }
   }
+
+  const showNotification = (message) => {
+    setNotification(message)
+    setTimeout(() => {
+      setNotification(null)
+    }, 5000)
+  }
+
   const handleDeletePerson = (id) => {
     const person = persons.find(person => person.id === id)
     const confirmDelete = window.confirm(`Delete ${person.name}?`)
@@ -106,6 +118,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={notification} />
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
       <h2>add a new</h2>
       <PersonForm
