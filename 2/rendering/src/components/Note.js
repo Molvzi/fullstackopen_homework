@@ -1,8 +1,9 @@
 import React from 'react'
 
 const Note = ({ note, ToggleImportance }) => {
-  const label=note.important
-  ? 'make not important' : 'make important'
+  const label = note.important
+    ? 'make not important'
+    : 'make important'
 
   return (
     <li>
