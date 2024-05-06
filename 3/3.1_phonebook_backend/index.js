@@ -1,8 +1,9 @@
 const express = require('express')
-const express = require('express')
+const morgan = require('morgan')
 const app = express()
 
 app.use(express.json())
+app.use(morgan('tiny'))
 
 let phonebook = [
   {
@@ -67,7 +68,7 @@ app.post('/api/persons', (request, response) => {
     })
   } else {
     const person = {
-      id: Math.floor(Math.random() * 100000000)+1,
+      id: Math.floor(Math.random() * 100000000) + 1,
       name: body.name,
       number: body.number
     }
