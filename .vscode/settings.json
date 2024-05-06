@@ -6,5 +6,6 @@
     "Phonebook",
     "Poppendieck",
     "uuidv"
-  ]
+  ],
+  "rest-client.rememberCookiesForSubsequentRequests": false
 }
